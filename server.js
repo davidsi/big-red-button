@@ -16,16 +16,14 @@ server.on( 'connection', function connection( wsClient ) {
 	wsClient.send( 'something' );
 
 	setTimeout( function() {
-		server.broadcast = function broadcast( data ) {
-			server.clients.forEach(function each( client ) {
-				if( client.readyState === WebSocket.OPEN ) {
-					client.send('big red button!');
-				}
-				else {
-					console.log( "client not open any more" );
-				}
-			});
-		};
+		server.clients.forEach(function each( client ) {
+			if( client.readyState === WebSocket.OPEN ) {
+				client.send('big red button!');
+			}
+			else {
+				console.log( "client not open any more" );
+			}
+		});
 	}, 1000 );
 });
 
