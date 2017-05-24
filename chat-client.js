@@ -3,7 +3,7 @@
  */
 var ws       = require( "ws" );
 var NetUtils = require( "../libs/node-lib/client-server/NetUtils" );
-var client   = new ws( "ws://172.20.10.10:" + NetUtils.CommonPorts.DEVICE_WS );
+var client   = new ws( "ws://172.20.10.10" );
 
 client.on('open', function open() {
   ws.send('something');
