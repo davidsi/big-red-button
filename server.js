@@ -15,18 +15,8 @@ server.on( 'connection', function connection( wsClient ) {
 		console.log('received: %s', message);
   });
 
-	wsClient.send( 'something' );
+	wsClient.send( 'connected' );
 
-	setTimeout( function() {
-		server.clients.forEach(function each( client ) {
-			if( client.readyState === WebSocket.OPEN ) {
-				client.send('big red button!');
-			}
-			else {
-				console.log( "client not open any more" );
-			}
-		});
-	}, 1000 );
 });
 
 /**
@@ -35,6 +25,15 @@ server.on( 'connection', function connection( wsClient ) {
 button.watch( function( error, value ) {
 
     console.log( "top level callback for button" );
+
+	server.clients.forEach(function each( client ) {
+		if( client.readyState === WebSocket.OPEN ) {
+			client.send('big red button!');
+		}
+		else {
+			console.log( "client not open any more" );
+		}
+	});
 });
 
 console.log( "ip addresses: " + JSON.stringify( NetUtils.getIpAddresses()) );
