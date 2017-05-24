@@ -6,6 +6,7 @@ var NetUtils = require( "../libs/node-lib/client-server/NetUtils" );
 var server   = new ws.Server( { port : NetUtils.CommonPorts.DEVICE_WS } );
 
 server.on( 'connection', function connection( wsClient ) {
+	console.log( "server recieved client connection" );
 	wsClient.on( 'message', function incoming( message ) {
 		console.log('received: %s', message);
   });
