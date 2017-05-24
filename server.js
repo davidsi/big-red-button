@@ -1,9 +1,9 @@
 /**
  * the bid red button server
  */
-var ws       = require( "ws" );
-var NetUtils = require( "../libs/node-lib/client-server/NetUtils" );
-var server   = new ws.Server( { port : NetUtils.CommonPorts.DEVICE_WS } );
+var WebSocket = require( "ws" );
+var NetUtils  = require( "../libs/node-lib/client-server/NetUtils" );
+var server    = new WebSocket.Server( { port : NetUtils.CommonPorts.DEVICE_WS } );
 
 server.on( 'connection', function connection( wsClient ) {
 	console.log( "server recieved client connection" );
@@ -12,10 +12,6 @@ server.on( 'connection', function connection( wsClient ) {
   });
 
 	ws.send( 'something' );
-});
-
-server.listen( NetUtils.CommonPorts.DEVICE_WS , function listening() {
-	console.log('Listening on %d', server.address().port );
 });
 
 // var ws       = require("nodejs-websocket")
