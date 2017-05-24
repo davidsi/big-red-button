@@ -14,6 +14,9 @@ server.on( 'connection', function connection( wsClient ) {
 	ws.send( 'something' );
 });
 
+server.listen( NetUtils.CommonPorts.DEVICE_WS , function listening() {
+	console.log('Listening on %d', server.address().port );
+});
 
 // var ws       = require("nodejs-websocket")
 // var NetUtils = require( "../libs/node-lib/client-server/NetUtils" );
