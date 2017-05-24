@@ -8,12 +8,17 @@ var server    = new WebSocket.Server( { port : NetUtils.CommonPorts.DEVICE_WS } 
 server.on( 'connection', function connection( wsClient ) {
 
 	console.log( "server recieved client connection" );
-	
+
 	wsClient.on( 'message', function incoming( message ) {
 		console.log('received: %s', message);
   });
 
 	wsClient.send( 'something' );
+
+	setTimeout( function() {
+
+		wsClient.send( 'big red button!' );
+	}, 1000 );
 });
 
 console.log( "ip addresses: " + JSON.stringify( NetUtils.getIpAddresses()) );
