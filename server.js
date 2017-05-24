@@ -1,9 +1,11 @@
 /**
  * the bid red button server
  */
-var WebSocket = require( "ws" );
-var NetUtils  = require( "../libs/node-lib/client-server/NetUtils" );
-var server    = new WebSocket.Server( { port : NetUtils.CommonPorts.DEVICE_WS } );
+var WebSocket  = require( "ws" );
+var NetUtils   = require( "../libs/node-lib/client-server/NetUtils" );
+var server     = new WebSocket.Server( { port : NetUtils.CommonPorts.DEVICE_WS } );
+var pinManager = require( "../libs/node-lib/device/chip/gpio/pinManager" );
+var button     = pinManager.getPin( 0, false, 'in', 'both', { debounceTimeout: 500 } );
 
 server.on( 'connection', function connection( wsClient ) {
 
@@ -27,21 +29,14 @@ server.on( 'connection', function connection( wsClient ) {
 	}, 1000 );
 });
 
+/**
+ * watch the button, if we get a hit, we need to broadcast a message to all clients
+ */
+button.watch( function( error, value ) {
+
+    console.log( "top level callback for button" );
+});
+
 console.log( "ip addresses: " + JSON.stringify( NetUtils.getIpAddresses()) );
 console.log( "waiting for a connection" );
 
-// var ws       = require("nodejs-websocket")
-// var NetUtils = require( "../libs/node-lib/client-server/NetUtils" );
-
-// var server = ws.createServer(function( conn ) {
-// 	console.log( "New connection" )
-	
-// 	conn.on( "text", function(str) {
-// 		console.log("Received "+str)
-// 		conn.sendText(str.toUpperCase()+"!!!")
-// 	})
-
-// 	conn.on("close", function (code, reason) {
-// 		console.log("Connection closed")
-// 	})
-// }).listen(NetUtils.CommonPorts.DEVICE_WS);
