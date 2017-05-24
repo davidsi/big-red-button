@@ -14,6 +14,8 @@ server.on( 'connection', function connection( wsClient ) {
 	ws.send( 'something' );
 });
 
+console.log( "waiting for a connection" );
+
 // var ws       = require("nodejs-websocket")
 // var NetUtils = require( "../libs/node-lib/client-server/NetUtils" );
 
