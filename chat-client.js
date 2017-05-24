@@ -14,10 +14,16 @@ client.on('message', function incoming( data ) {
 
 	console.log( "recieved " + data );
 
-	var script1  = 'display dialog "Hello from david" with title "Hello"';
-	var script   = 'tell application "iTunes" to play playlist "Music"';
-	var execStr  = "osascript -e '" + script + "'";
+	if( data == "connected" ) {
+		console.log( "connection alive" );
+	}
+	else if( data == "big red button!" ) {
 
-	console.log( execStr );
-	shelljs.exec( execStr );
+		var script1  = 'display dialog "Hello from david" with title "Hello"';
+		var script   = 'tell application "iTunes" to play playlist "Music"';
+		var execStr  = "osascript -e '" + script + "'";
+
+		console.log( execStr );
+		shelljs.exec( execStr );
+	}
 });
