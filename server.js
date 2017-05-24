@@ -21,6 +21,9 @@ server.on( 'connection', function connection( wsClient ) {
 				if( client.readyState === WebSocket.OPEN ) {
 					client.send('big red button!');
 				}
+				else {
+					console.log( "client not open any more" );
+				}
 			});
 		};
 	}, 1000 );
