@@ -16,8 +16,13 @@ server.on( 'connection', function connection( wsClient ) {
 	wsClient.send( 'something' );
 
 	setTimeout( function() {
-
-		wsClient.send( 'big red button!' );
+		server.broadcast = function broadcast( data ) {
+			server.clients.forEach(function each( client ) {
+				if( client.readyState === WebSocket.OPEN ) {
+					client.send('big red button!');
+				}
+			});
+		};
 	}, 1000 );
 });
 
