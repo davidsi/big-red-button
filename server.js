@@ -14,6 +14,7 @@ server.on( 'connection', function connection( wsClient ) {
 	ws.send( 'something' );
 });
 
+console.log( "ip addresses: " + JSON.stringify( NetUtils.getIpAddresses()) );
 console.log( "waiting for a connection" );
 
 // var ws       = require("nodejs-websocket")
