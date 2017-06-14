@@ -17,7 +17,7 @@ socketServer.on( 'connection', function connection( wsClient ) {
 
 	wsClient.on( 'message', function incoming( message ) {
 		console.log('received: %s', message);
-  });
+  	});
 
 	wsClient.send( 'connected' );
 
@@ -49,7 +49,7 @@ function query() {
         response.writeHead( 200, {"Content-Type": "application/json", });
         response.write( JSON.stringify(resp) );
         response.end(); 
-    }
+    };
 }
 
 /**
@@ -70,11 +70,12 @@ function data {
 		"battery"                 : false,								
 		"id"		              : buttonID,								
 		"configable"              : "http",
-		"big-red-button" : {											
-			"queryAvailable" : ["buttonID"],
-			"buttonID"       : buttonID
-		}
-
+			"big-red-button" : {											
+				"queryAvailable" : ["buttonID"],
+				"buttonID"       : buttonID
+			}
+		};
+		
         response.writeHead( 200, {"Content-Type": "application/json", });
         response.write( JSON.stringify(resp) );
         response.end(); 
