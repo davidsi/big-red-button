@@ -5,11 +5,12 @@ var WebSocket             = require( "ws" );
 var NetUtils              = require( "../libs/node-lib/client-server/NetUtils" );
 var pinManager            = require( "../libs/node-lib/device/chip/gpio/pinManager" );
 var httpServer            = require( "../libs/node-lib/client-server/server" );
-var router                = require( "../libs/node-lib/client-server/router" );
+var Router                = require( "../libs/node-lib/client-server/router" );
 
 var socketServer          = new WebSocket.Server( { port : NetUtils.CommonPorts.DEVICE_WS } );
 var button                = pinManager.getPin( 0, false, 'in', 'both', { debounceTimeout: 500 } );
 var buttonID			  = 102;
+var router                = new Router();
 
 socketServer.on( 'connection', function connection( wsClient ) {
 
