@@ -105,7 +105,7 @@ console.log( "starting big red button" );
 router.addRoute( "/query", new query() );
 router.addRoute( "/data",  new data() );
 
-httpServer.start( new Router() );
+httpServer.start( router );
 
 console.log( "ip addresses: " + JSON.stringify( NetUtils.getIpAddresses()) );
 console.log( "waiting for a connection" );
