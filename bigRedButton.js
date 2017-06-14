@@ -31,19 +31,19 @@ function query() {
     this.responder = function( response, request, params ) {
 
     	var resp = {
-
-		"SSID-config"             : false,								
-		"bluetooth-service-guid"  : "",									
-		"nodeType"                : ["big-red-button"],
-		"big-red-button-reciever" : false,
-		"name"                    : "iTunes big red button",
-		"hardware"                : "chip",
-		"battery"                 : false,								
-		"id"		              : buttonID,								
-		"configable"              : "http",
-		"big-red-button" : {											
-			"queryAvailable" : ["buttonID"],
-			"buttonID"       : buttonID
+			"SSID-config"             : false,								
+			"bluetooth-service-guid"  : "",									
+			"nodeType"                : ["big-red-button"],
+			"big-red-button-reciever" : false,
+			"name"                    : "iTunes big red button",
+			"hardware"                : "chip",
+			"battery"                 : false,								
+			"id"		              : buttonID,								
+			"configable"              : "http",
+			"big-red-button" : {											
+				"queryAvailable" : ["buttonID"],
+				"buttonID"       : buttonID
+			}
 		};
 
         response.writeHead( 200, {"Content-Type": "application/json", });
