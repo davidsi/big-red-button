@@ -42,8 +42,8 @@ function query() {
 			"id"		              : buttonID,								
 			"configable"              : "http",
 			"big-red-button" : {											
-				"queryAvailable" : ["buttonID"],
-				"buttonID"       : buttonID
+				"queryAvailable" : [],
+				"buttonID"       : buttonID				// no need for data call, this can be filled in here, it's static
 			}
 		};
 
@@ -51,36 +51,6 @@ function query() {
         response.write( JSON.stringify(resp) );
         response.end(); 
     };
-}
-
-/**
- * get/set the BRB specifics
- */
-function data() {
-
-   this.responder = function( response, request, params ) {
-
-    	var resp = {
-
-		"SSID-config"             : false,								
-		"bluetooth-service-guid"  : "",									
-		"nodeType"                : ["big-red-button"],
-		"big-red-button-reciever" : false,
-		"name"                    : "iTunes big red button",
-		"hardware"                : "chip",
-		"battery"                 : false,								
-		"id"		              : buttonID,								
-		"configable"              : "http",
-			"big-red-button" : {											
-				"queryAvailable" : ["buttonID"],
-				"buttonID"       : buttonID
-			}
-		};
-
-        response.writeHead( 200, {"Content-Type": "application/json", });
-        response.write( JSON.stringify(resp) );
-        response.end(); 
-    }
 }
 
 /**
@@ -103,7 +73,6 @@ button.watch( function( error, value ) {
 console.log( "starting big red button" );
 
 router.addRoute( "/query", new query() );
-router.addRoute( "/data",  new data() );
 
 httpServer.start( router );
 
